@@ -29,7 +29,6 @@ public class Category {
     @Column(name = "updated_at")
     private Instant lastModifiedDate;
 
-    @Id
     public Long getId() {
         return id;
     }

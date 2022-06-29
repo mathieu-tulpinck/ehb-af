@@ -11,6 +11,8 @@ import java.time.Instant;
 @Entity
 @Table(name = "shopping_cart_items")
 public class ShoppingCartItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Valid
@@ -30,7 +32,6 @@ public class ShoppingCartItem {
     @Column(name = "updated_at")
     private Instant lastModifiedDate;
 
-    @Id
     public Long getId() {
         return id;
     }

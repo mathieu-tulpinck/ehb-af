@@ -25,7 +25,6 @@ public class ApplicationUser {
     @Column(name = "updated_at")
     private Instant lastModifiedDate;
 
-    @Id
     public Long getId() {
         return id;
     }

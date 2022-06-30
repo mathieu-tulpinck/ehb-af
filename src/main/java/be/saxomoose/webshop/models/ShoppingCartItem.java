@@ -22,13 +22,13 @@ public class ShoppingCartItem {
     private Item item;
 
     @NotNull
-    private int quantity;
-
-    @NotNull
     // No unique constraint given transient nature. What matters is that there is no collision between current sessions.
     @Column(name = "shopping_cart_id", columnDefinition = "varchar(36)")
     @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
     private UUID shoppingCardId;
+
+    @NotNull
+    private int quantity;
 
     @CreatedDate
     @Column(name = "created_at")

@@ -16,11 +16,12 @@ public class ItemController
     @Autowired
     private ItemRepository itemRepository;
 
-//    @GetMapping
-//    public List<Item> index()
-//    {
+    @GetMapping
+    public String index()
+    {
 //        var items = itemRepository.findAll();
-//    }
+        return "index";
+    }
 
 
 }

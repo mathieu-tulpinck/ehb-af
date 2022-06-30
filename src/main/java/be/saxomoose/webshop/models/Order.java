@@ -6,6 +6,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Collection;
@@ -17,16 +19,19 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Valid
+    @NotNull
     @ManyToOne
     private ApplicationUser user;
 
-    @OneToMany(targetEntity = OrderDetails.class)
+    @OneToMany(targetEntity = OrderDetails.class, orphanRemoval = true)
+    @JoinColumn(name = "order_id")
     private Collection<OrderDetails> orderDetails;
 
+    @NotNull
     @DecimalMin(value = "0.00", message = "Subtotal must be positive")
     private BigDecimal subtotal;
 
+    @NotNull
     @DecimalMin(value = "0.00", message = "Subtotal must be positive")
     private BigDecimal total;
 

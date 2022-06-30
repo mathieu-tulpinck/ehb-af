@@ -4,6 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -14,14 +15,18 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @ManyToOne
     private Order order;
 
+    @NotNull
     @ManyToOne
     private Item item;
 
+    @NotNull
     private int quantity;
 
+    @NotNull
     private BigDecimal price;
 
     @CreatedDate

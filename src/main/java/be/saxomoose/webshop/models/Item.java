@@ -7,8 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -19,21 +18,25 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Valid
+    @NotNull
     @ManyToOne
     private Category category;
 
+    @NotNull
     @Length(max = 255)
     private String name;
 
+    @NotNull
     @DecimalMin(value = "0.00", message = "*Price must be positive")
     private BigDecimal price;
 
     // Divide by 100 on use.
-    @Column(name = "vat_rate")
+    @NotNull
+    @Column(name = "vat_rate", columnDefinition = "integer default 21")
     @Min(value = 0, message = "VAT rate must be positive")
     private Integer vatRate;
 
+    @NotNull
     @Column(name = "quantity_in_stock")
     @Min(value = 0, message = "Amount in stock must be positive")
     private Integer quantityInStock;

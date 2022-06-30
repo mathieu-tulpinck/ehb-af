@@ -14,7 +14,8 @@ public class ApplicationUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(targetEntity = Order.class)
+    @OneToMany(targetEntity = Order.class, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
     private Collection<Order> orders;
 
     @CreatedDate

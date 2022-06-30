@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.Collection;
 
@@ -15,9 +16,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(targetEntity = Item.class)
+    @OneToMany(targetEntity = Item.class, orphanRemoval = true)
+    // Required to avoid the creation of a joint table.
+    @JoinColumn(name = "category_id")
     private Collection<Item> items;
 
+    @NotNull
     @Length(max = 255)
     private String name;
 

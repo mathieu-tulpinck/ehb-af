@@ -1,6 +1,6 @@
 # Installation
 
-Under `./docker` directory, create an `.env` file and set following variables: 
+Under `docker` directory, create an `.env` file and set following variables: 
 
 - `DB_DATABASE={db name}`
 - `DB_USERNAME={db user}`
@@ -8,7 +8,7 @@ Under `./docker` directory, create an `.env` file and set following variables:
 
 They will be picked by `docker compose` on build.
 
-Under `src/main/resources`, create an `application.properties` file and set following variables:
+Under `src/main/resources` directory, create an `application.properties` file and set following variables:
 
 - `spring.datasource.url=jdbc:mysql://{db host}:3306/{db name}`
 - `spring.datasource.username={db user}`

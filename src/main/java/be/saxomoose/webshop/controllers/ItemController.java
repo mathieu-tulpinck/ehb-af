@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 public class ItemController
@@ -26,19 +26,22 @@ public class ItemController
         this.itemRepository = itemRepository;
     }
 
-    private String currentCategory;
+    private Long currentCategoryId;
     private Collection<Item> items;
 
     @GetMapping("/items")
-    public ModelAndView index()
+    public ModelAndView index(@RequestParam(required = false) Long categoryId)
     {
         var categories= categoryRepository.findAll();
         var modelAndView = new ModelAndView("items/index");
         modelAndView.addObject("categories", categories);
 
-        if (currentCategory == null || currentCategory.isEmpty()) {
+        if (categoryId == null) {
             items = itemRepository.findAll();
-            currentCategory = "All items";
+            modelAndView.addObject("items", items);
+        } else {
+            currentCategoryId = categoryId;
+            items = itemRepository.findItemsByCategoryId(currentCategoryId);
             modelAndView.addObject("items", items);
         }
 

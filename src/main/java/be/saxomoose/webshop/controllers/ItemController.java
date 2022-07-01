@@ -19,15 +19,15 @@ public class ItemController
 {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
+    private Long currentCategoryId;
+    private Collection<Item> items;
+
     @Autowired
     public ItemController(CategoryRepository categoryRepository, ItemRepository itemRepository)
     {
         this.categoryRepository = categoryRepository;
         this.itemRepository = itemRepository;
     }
-
-    private Long currentCategoryId;
-    private Collection<Item> items;
 
     @GetMapping("/items")
     public ModelAndView index(@RequestParam(required = false) Long categoryId)

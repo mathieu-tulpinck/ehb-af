@@ -1,16 +1,16 @@
-<div th:fragment="sidebar (categories)">
-    <div class="flex-shrink-0 bg-white" style="width: 280px;">
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                    Categories
-                </button>
-                <div class="collapse show" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" th:each="category : ${categories}" th:text="${category.name}" class="link-dark d-inline-flex text-decoration-none rounded">Category placeholder</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+<div th:fragment="sidebar(categories)" class="bg-white">
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                Categories
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li th:each="category : ${categories}">
+                        <a href="#"  th:text="${category.name}" class="link-dark d-inline-flex text-decoration-none rounded">Category placeholder</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 </div>

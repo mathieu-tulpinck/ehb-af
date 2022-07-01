@@ -65,7 +65,6 @@ public class Item {
         this.category = category;
     }
 
-
     public String getName() {
         return name;
     }
@@ -90,12 +89,12 @@ public class Item {
         this.vatRate = vatRate;
     }
 
-    public Integer getAmountInStock() {
+    public Integer getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setAmountInStock(Integer amountInStock) {
-        this.quantityInStock = amountInStock;
+    public void setQuantityInStock(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
     }
 
 

@@ -1,0 +1,8 @@
+<div th:fragment="card(item)" class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <a th:href="@{/items/details/{id}(id = ${item.id})}" th:text="${item.name}" class="card-title h5"></a>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a class="btn btn-primary">Add to cart</a>
+    </div>
+</div>

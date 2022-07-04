@@ -10,7 +10,7 @@
             <div class="collapse show" id="home-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li th:each="category : ${categories}">
-                        <a th:href="@{/items(categoryId=${category.id})}"  th:text="${category.name}" class="link-dark d-inline-flex text-decoration-none rounded">Category placeholder</a>
+                        <a th:href="@{/(categoryId=${category.id})}"  th:text="${category.name}" class="link-dark d-inline-flex text-decoration-none rounded">Category placeholder</a>
                     </li>
 
                 </ul>

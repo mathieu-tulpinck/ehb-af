@@ -53,7 +53,7 @@ public class WebshopSecurityConfig extends WebSecurityConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/", "/items*", "/items/**", "/register").permitAll()
-                .mvcMatchers("/public/**", "/webjars/**").permitAll()
+                .mvcMatchers("/css/**", "/img/**", "/js/**", "/svg/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated().expressionHandler(expressionHandler()).and()
                 .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true).and()
                 .rememberMe().userDetailsService(accountService).key("remember-me").and()

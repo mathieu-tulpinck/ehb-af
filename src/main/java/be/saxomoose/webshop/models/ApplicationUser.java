@@ -34,7 +34,7 @@ public class ApplicationUser implements UserDetails
     private String username;
 
     @NotNull
-    @Length(max = 100)
+    @Length(max = 200)
     private String password;
 
     @NotNull
@@ -44,7 +44,7 @@ public class ApplicationUser implements UserDetails
     @Length(max = 20)
     private String role;
 
-    //    @CreatedDate
+//    @CreatedDate
 //    @Column(name = "created_at")
 //    private Instant createdDate;
 //
@@ -100,7 +100,7 @@ public class ApplicationUser implements UserDetails
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
         List<GrantedAuthority> authList = new ArrayList<>();
-        authList.add(new SimpleGrantedAuthority(role.toString()));
+        authList.add(new SimpleGrantedAuthority(role));
         return authList;
     }
 

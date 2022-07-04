@@ -1,61 +1,20 @@
 package be.saxomoose.webshop.models;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
-import javax.persistence.*;
-import java.time.Instant;
-import java.util.Collection;
+import java.util.List;
 
-@Entity
-@Table(name = "users")
-public class ApplicationUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ApplicationUser extends User
+{
+    private Account account;
 
-    @OneToMany(targetEntity = Order.class, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
-    private Collection<Order> orders;
-
-    @CreatedDate
-    @Column(name = "created_at")
-    private Instant createdDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private Instant lastModifiedDate;
-
-    public Long getId() {
-        return id;
+    public ApplicationUser(Account account) {
+        super(account.getUsername(), account.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_" + account.getRole())));
+        this.account = account;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public Collection<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Collection<Order> orders) {
-        this.orders = orders;
-    }
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public Account getAccount() {
+        return account;
     }
 }

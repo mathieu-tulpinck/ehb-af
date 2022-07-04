@@ -29,35 +29,11 @@ public class OrderDetails {
     @NotNull
     private BigDecimal price;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private Instant createdDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private Instant lastModifiedDate;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 }

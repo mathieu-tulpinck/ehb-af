@@ -4,9 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -21,9 +19,9 @@ public class Order {
 
     @NotNull
     @ManyToOne
-    private ApplicationUser user;
+    private Account account;
 
-    @OneToMany(targetEntity = OrderDetails.class, orphanRemoval = true)
+    @OneToMany(orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private Collection<OrderDetails> orderDetails;
 
@@ -35,14 +33,6 @@ public class Order {
     @DecimalMin(value = "0.00", message = "Subtotal must be positive")
     private BigDecimal total;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private Instant createdDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private Instant lastModifiedDate;
-
     public Long getId() {
         return id;
     }
@@ -51,20 +41,13 @@ public class Order {
         this.id = id;
     }
 
-
-    public Instant getCreatedDate() {
-        return createdDate;
+    public Account getAccount()
+    {
+        return account;
     }
 
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setAccount(Account account)
+    {
+        this.account = account;
     }
 }

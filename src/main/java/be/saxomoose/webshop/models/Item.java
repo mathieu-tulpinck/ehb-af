@@ -41,14 +41,6 @@ public class Item {
     @Min(value = 0, message = "Amount in stock must be positive")
     private Integer quantityInStock;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private Instant createdDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private Instant lastModifiedDate;
-
     public Long getId() {
         return id;
     }

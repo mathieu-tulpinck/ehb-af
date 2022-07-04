@@ -29,7 +29,7 @@ public class ItemController
         this.itemRepository = itemRepository;
     }
 
-    @GetMapping("/items")
+    @GetMapping("/")
     public ModelAndView index(@RequestParam(required = false) Long categoryId)
     {
         var categories= categoryRepository.findAll();

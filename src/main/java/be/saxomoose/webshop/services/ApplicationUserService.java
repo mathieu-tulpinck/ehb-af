@@ -1,8 +1,7 @@
 package be.saxomoose.webshop.services;
 
-import be.saxomoose.webshop.models.Account;
 import be.saxomoose.webshop.models.ApplicationUser;
-import be.saxomoose.webshop.repositories.AccountRepository;
+import be.saxomoose.webshop.repositories.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,15 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountService implements UserDetailsService
+public class ApplicationUserService implements UserDetailsService
 {
-    private AccountRepository accountRepository;
+    private ApplicationUserRepository applicationUserRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AccountService(AccountRepository accountRepository, PasswordEncoder passwordEncoder)
+    public ApplicationUserService(ApplicationUserRepository accountRepository, PasswordEncoder passwordEncoder)
     {
-        this.accountRepository = accountRepository;
+        this.applicationUserRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -28,20 +27,21 @@ public class AccountService implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        Account account = accountRepository.findByUsername(username);
-        if (account == null) {
+        var user = applicationUserRepository.findByUsername(username);
+        if (user == null) {
             throw new UsernameNotFoundException(username);
         }
 
-        return new ApplicationUser(account);
+        return user;
     }
 
-    public Account createNew(Account account) {
+    public ApplicationUser createNew(ApplicationUser account) {
         encodePassword(passwordEncoder, account);
-        return this.accountRepository.save(account);
+        var createdAccount = this.applicationUserRepository.save(account);
+        return createdAccount;
     }
 
-    private void encodePassword(PasswordEncoder passwordEncoder, Account account) {
+    private void encodePassword(PasswordEncoder passwordEncoder, ApplicationUser account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
     }
 }

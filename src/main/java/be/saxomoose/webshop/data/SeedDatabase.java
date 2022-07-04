@@ -1,8 +1,8 @@
 package be.saxomoose.webshop.data;
 
 import be.saxomoose.webshop.enums.Role;
-import be.saxomoose.webshop.models.Account;
-import be.saxomoose.webshop.services.AccountService;
+import be.saxomoose.webshop.models.ApplicationUser;
+import be.saxomoose.webshop.services.ApplicationUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -11,22 +11,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class SeedDatabase implements ApplicationRunner
 {
-    private final AccountService accountService;
+    private final ApplicationUserService applicationUserService;
 
     @Autowired
-    public SeedDatabase(AccountService accountService)
+    public SeedDatabase(ApplicationUserService applicationUserService)
     {
-        this.accountService = accountService;
+        this.applicationUserService = applicationUserService;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception
     {
-        Account testAccount = new Account();
-        testAccount.setUsername("mathieu@webshop.test");
-        testAccount.setPassword("password");
-        testAccount.setRole(Role.ADMIN);
+//        ApplicationUser user = new ApplicationUser();
+//        user.setUsername("mathieu@webshop.test");
+//        user.setPassword("password");
+//        user.setEnabled(true);
+//        user.setRole("ROLE_ADMIN");
+//        applicationUserService.createNew(user);
 
-        accountService.createNew(testAccount);
     }
 }

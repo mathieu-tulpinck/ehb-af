@@ -19,7 +19,7 @@ public class Order {
 
     @NotNull
     @ManyToOne
-    private Account account;
+    private ApplicationUser user;
 
     @OneToMany(orphanRemoval = true)
     @JoinColumn(name = "order_id")
@@ -41,13 +41,13 @@ public class Order {
         this.id = id;
     }
 
-    public Account getAccount()
+    public ApplicationUser getApplicationUser()
     {
-        return account;
+        return user;
     }
 
-    public void setAccount(Account account)
+    public void setApplicationUser(ApplicationUser user)
     {
-        this.account = account;
+        this.user = user;
     }
 }

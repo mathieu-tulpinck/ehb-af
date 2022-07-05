@@ -8,7 +8,9 @@
         <div >
             <a sec:authorize="!isAuthenticated()" th:href="@{/login}"  type="button" class="btn btn-outline-primary" >Login</a>
             <a sec:authorize="!isAuthenticated()" th:href="@{/register}"  type="button" class="btn btn-primary">Register</a>
-            <a sec:authorize="isAuthenticated()" th:href="@{/logout}"  type="button" class="btn btn-primary">Log out</a>
+            <form sec:authorize="isAuthenticated()" th:action="@{/perform_logout}" method="post">
+                <button type="submit" class="btn btn-primary">Log out</button>
+            </form>
         </div>
     </header>
 </div>

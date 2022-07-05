@@ -2,6 +2,7 @@ package be.saxomoose.webshop.models;
 
 import be.saxomoose.webshop.enums.Role;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,19 +31,17 @@ public class ApplicationUser implements UserDetails
 
     @NotNull
     @Column(unique = true)
-    @Length(max = 255)
     private String username;
 
     @NotNull
-    @Length(max = 200)
     private String password;
 
     @NotNull
     private boolean enabled;
 
     @NotNull
-    @Length(max = 20)
-    private String role;
+    @Column(columnDefinition = "VARCHAR(20) default 'ROLE_USER'")
+    private String role = "ROLE_USER";
 
 //    @CreatedDate
 //    @Column(name = "created_at")

@@ -1,6 +1,7 @@
 package be.saxomoose.webshop.models;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -23,7 +24,6 @@ public class Item {
     private Category category;
 
     @NotNull
-    @Length(max = 255)
     private String name;
 
     @NotNull
@@ -34,7 +34,7 @@ public class Item {
     @NotNull
     @Column(name = "vat_rate", columnDefinition = "integer default 21")
     @Min(value = 0, message = "VAT rate must be positive")
-    private Integer vatRate;
+    private Integer vatRate = 21;
 
     @NotNull
     @Column(name = "quantity_in_stock")

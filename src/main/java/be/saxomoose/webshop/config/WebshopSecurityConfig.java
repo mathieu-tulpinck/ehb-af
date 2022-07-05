@@ -18,6 +18,7 @@ import org.springframework.security.web.access.expression.DefaultWebSecurityExpr
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -52,12 +53,12 @@ public class WebshopSecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/", "/items*", "/items/**", "/register").permitAll()
+                .mvcMatchers("/", "/items*", "/items/**", "/register", "/logout").permitAll()
                 .mvcMatchers("/css/**", "/img/**", "/js/**", "/svg/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated().expressionHandler(expressionHandler()).and()
-                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true).and()
-                .rememberMe().userDetailsService(accountService).key("remember-me").and()
-                .logout().permitAll().and()
+                .formLogin().loginPage("/login").loginProcessingUrl("/perform_login").permitAll().defaultSuccessUrl("/", true).and()
+//                .rememberMe().userDetailsService(accountService).key("remember-me").and()
+                .logout().logoutUrl("/perform_logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/").permitAll().and()
                 .httpBasic();
     }
 

@@ -35,10 +35,19 @@ public class ApplicationUserService implements UserDetailsService
         return user;
     }
 
-    public ApplicationUser createNew(ApplicationUser account) {
-        encodePassword(passwordEncoder, account);
-        var createdAccount = this.applicationUserRepository.save(account);
-        return createdAccount;
+    public ApplicationUser findByUsername(String username) {
+        return applicationUserRepository.findByUsername(username);
+    }
+
+    public ApplicationUser createNew(ApplicationUser user) {
+        encodePassword(passwordEncoder, user);
+        var createdUser = this.applicationUserRepository.save(user);
+        return createdUser;
+    }
+
+    public void activate(ApplicationUser user) {
+        user.setEnabled(true);
+        this.applicationUserRepository.save(user);
     }
 
     private void encodePassword(PasswordEncoder passwordEncoder, ApplicationUser account) {

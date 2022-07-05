@@ -22,7 +22,6 @@ public class Category {
     private Collection<Item> items;
 
     @NotNull
-    @Length(max = 255)
     private String name;
 
     public Long getId() {

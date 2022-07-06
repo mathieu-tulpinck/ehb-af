@@ -30,6 +30,14 @@ public class OrderDetails {
     @NotNull
     private BigDecimal price;
 
+    public OrderDetails(Order order, Item item, int quantity, BigDecimal price)
+    {
+        this.order = order;
+        this.item = item;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }

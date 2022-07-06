@@ -36,7 +36,7 @@ public class ShoppingCartService
     public List<ShoppingCartItem> getShoppingCartItems()
     {
         initializeCart();
-        var items = shoppingCartItemRepository.findItemsByShoppingCardId(shoppingCartId);
+        var items = shoppingCartItemRepository.findItemsByShoppingCartId(shoppingCartId);
 
         return items;
     }
@@ -44,7 +44,7 @@ public class ShoppingCartService
     public void addToShoppingCart(Item item)
     {
         initializeCart();
-        var shoppingCartItem = shoppingCartItemRepository.findShoppingCartItemByShoppingCardIdAndItemId(shoppingCartId, item.getId());
+        var shoppingCartItem = shoppingCartItemRepository.findShoppingCartItemByShoppingCartIdAndItemId(shoppingCartId, item.getId());
         if (shoppingCartItem == null) {
             shoppingCartItemRepository.save(new ShoppingCartItem(item, shoppingCartId, 1, Instant.now(), Instant.now()));
         } else {
@@ -80,6 +80,11 @@ public class ShoppingCartService
     public BigDecimal getSubtotal()
     {
         return shoppingCartItemRepository.getSubtotal(shoppingCartId.toString());
+    }
+
+    public void clearShoppingCart()
+    {
+        shoppingCartItemRepository.deleteAllByShoppingCartId(shoppingCartId);
     }
 
     private void initializeCart()

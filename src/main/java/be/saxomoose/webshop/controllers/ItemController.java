@@ -30,7 +30,7 @@ public class ItemController
     }
 
     @GetMapping("/")
-    public ModelAndView index(@RequestParam(required = false) Long categoryId)
+    public ModelAndView index(@RequestParam(required = false) Long categoryId, @RequestParam(required = false) String message)
     {
         var categories= categoryRepository.findAll();
         var modelAndView = new ModelAndView("items/index");
@@ -43,6 +43,10 @@ public class ItemController
             currentCategoryId = categoryId;
             items = itemRepository.findItemsByCategoryId(currentCategoryId);
             modelAndView.addObject("items", items);
+        }
+
+        if (message != null) {
+            modelAndView.addObject("message", message);
         }
 
         return modelAndView;

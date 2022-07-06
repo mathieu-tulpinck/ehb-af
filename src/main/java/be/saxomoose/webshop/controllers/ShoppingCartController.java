@@ -16,15 +16,15 @@ import org.springframework.web.servlet.view.RedirectView;
 public class ShoppingCartController
 {
     private final ShoppingCartService shoppingCartService;
-    private final ItemRepository itemRepository;
     private final ShoppingCartItemRepository shoppingCartItemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ShoppingCartController(ShoppingCartService shoppingCartService, ItemRepository itemRepository, ShoppingCartItemRepository shoppingCartItemRepository)
+    public ShoppingCartController(ShoppingCartService shoppingCartService, ShoppingCartItemRepository shoppingCartItemRepository, ItemRepository itemRepository)
     {
         this.shoppingCartService = shoppingCartService;
-        this.itemRepository = itemRepository;
         this.shoppingCartItemRepository = shoppingCartItemRepository;
+        this.itemRepository = itemRepository;
     }
 
     @GetMapping("/shoppingcart")

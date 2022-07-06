@@ -1,10 +1,12 @@
 package be.saxomoose.webshop.models;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -33,6 +35,17 @@ public class Order {
     @DecimalMin(value = "0.00", message = "Subtotal must be positive")
     private BigDecimal total;
 
+    @NotNull
+    private String address;
+
+    @NotNull
+    @Column(name = "post_code")
+    @Max(9999)
+    private Integer postalCode;
+
+    @NotNull
+    private String city;
+
     @CreatedDate
     @Column(name = "created_at")
     private Instant createdDate;
@@ -40,6 +53,17 @@ public class Order {
     @LastModifiedDate
     @Column(name = "updated_at")
     private Instant lastModifiedDate;
+
+    public Order()
+    {
+    }
+
+    public Order(String address, Integer postalCode, String city)
+    {
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+    }
 
     public Long getId() {
         return id;
@@ -49,12 +73,12 @@ public class Order {
         this.id = id;
     }
 
-    public ApplicationUser getApplicationUser()
+    public ApplicationUser getUser()
     {
         return user;
     }
 
-    public void setApplicationUser(ApplicationUser user)
+    public void setUser(ApplicationUser user)
     {
         this.user = user;
     }
@@ -87,6 +111,36 @@ public class Order {
     public void setTotal(BigDecimal total)
     {
         this.total = total;
+    }
+
+    public String getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public Integer getPostalCode()
+    {
+        return postalCode;
+    }
+
+    public void setPostalCode(Integer postalCode)
+    {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
     }
 
     public Instant getCreatedDate()

@@ -10,7 +10,6 @@
   <div th:replace="fragments/navbar" />
   <div class="row">
     <div class="col-sm-4">
-      <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
       <form th:action="@{/register}" th:object="${user}" method="post" >
         <div class="mb-3">
           <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></label>

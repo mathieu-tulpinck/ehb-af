@@ -5,9 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -27,7 +25,7 @@ public class ShoppingCartItem {
     @Column(name = "shopping_cart_id"/*, columnDefinition = "varchar(36)"*/)
     @Type(type="org.hibernate.type.UUIDCharType")
 //    @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
-    private UUID shoppingCardId;
+    private UUID shoppingCartId;
 
     @NotNull
     private int quantity;
@@ -41,10 +39,10 @@ public class ShoppingCartItem {
     private Instant lastModifiedDate;
 
     public ShoppingCartItem() { }
-    public ShoppingCartItem(Item item, UUID shoppingCardId, int quantity, Instant createdDate, Instant lastModifiedDate)
+    public ShoppingCartItem(Item item, UUID shoppingCartId, int quantity, Instant createdDate, Instant lastModifiedDate)
     {
         this.item = item;
-        this.shoppingCardId = shoppingCardId;
+        this.shoppingCartId = shoppingCartId;
         this.quantity = quantity;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
@@ -68,14 +66,14 @@ public class ShoppingCartItem {
         this.item = item;
     }
 
-    public UUID getShoppingCardId()
+    public UUID getShoppingCartId()
     {
-        return shoppingCardId;
+        return shoppingCartId;
     }
 
-    public void setShoppingCardId(UUID shoppingCardId)
+    public void setShoppingCartId(UUID shoppingCardId)
     {
-        this.shoppingCardId = shoppingCardId;
+        this.shoppingCartId = shoppingCardId;
     }
 
     public int getQuantity()

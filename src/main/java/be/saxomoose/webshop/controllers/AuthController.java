@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -56,9 +57,8 @@ public class AuthController
         } else {
             applicationUserService.createNew(user);
             applicationUserService.activate(user);
-            modelAndView.addObject("successMessage", "Registration successful");
-            modelAndView.addObject("user", new ApplicationUser());
-            modelAndView.setViewName("auth/register");
+            modelAndView.addObject("message", "Registration successful");
+            modelAndView.setViewName("redirect:/");
         }
 
         return modelAndView;

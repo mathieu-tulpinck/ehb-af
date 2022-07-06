@@ -12,3 +12,5 @@ Following ports are published on the docker host:
 - `phpmyadmin`: `8090`
 - `mailhog`: `8025`
 - `webshop`: `8080`
+
+After the first boot, open `src/main/resources/application.properties` and comment out `spring.sql.init.data-locations=classpath:database/data.sql` to deactivate seeding. Rebuild the image by running `docker compose build [--no-cache]`.

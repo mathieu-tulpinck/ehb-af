@@ -7,10 +7,10 @@
 <body>
 <div class="container">
     <div th:replace="fragments/navbar" />
-    <div class="alert alert-info " th:if="${message}" th:utext="${message}"></div>
+    <div th:if="${message}" th:utext="${message}" class="alert alert-info mb-4" ></div>
     <span class="alert alert-secondary">Beware that the shopping cart content will be discarded on logout</span>
     <div class="row d-flex justify-content-center">
-        <table class="table">
+        <table class="table mt-4">
             <caption>Shopping cart</caption>
             <thead>
             <tr>
@@ -18,6 +18,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Subtotal per item</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -28,15 +29,22 @@
                 <th:block th:with="subtotal=${shoppingCartItem.item.price * shoppingCartItem.quantity}">
                     <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
                 </th:block>
+                <td>
+                    <form th:action="@{/shoppingcart/{shoppingCartItemId}(shoppingCartItemId = ${shoppingCartItem.id})}" th:method="delete">
+                        <input type="submit" value="Remove from cart" class="btn btn-danger"/>
+                    </form>
+                </td>
             </tr>
             </tbody>
             <tfoot th:if="${!shoppingCartItems.isEmpty()}">
             <tr>
-                <td colspan="3" class="text-end">Subtotal</td>
+                <td colspan="2"></td>
+                <td>Subtotal</td>
                 <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
             </tr>
             <tr>
-                <td colspan="3" class="text-end">Total with VAT</td>
+                <td colspan="2"></td>
+                <td>Total with VAT</td>
                 <td th:text="${#numbers.formatDecimal(total, 1, 2, 'COMMA')} + ' €'"></td>
             </tr>
             </tfoot>

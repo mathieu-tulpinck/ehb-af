@@ -1,13 +1,12 @@
 package be.saxomoose.webshop.controllers;
 
 import be.saxomoose.webshop.repositories.ItemRepository;
+import be.saxomoose.webshop.repositories.ShoppingCartItemRepository;
 import be.saxomoose.webshop.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,12 +17,14 @@ public class ShoppingCartController
 {
     private final ShoppingCartService shoppingCartService;
     private final ItemRepository itemRepository;
+    private final ShoppingCartItemRepository shoppingCartItemRepository;
 
     @Autowired
-    public ShoppingCartController(ShoppingCartService shoppingCartService, ItemRepository itemRepository)
+    public ShoppingCartController(ShoppingCartService shoppingCartService, ItemRepository itemRepository, ShoppingCartItemRepository shoppingCartItemRepository)
     {
         this.shoppingCartService = shoppingCartService;
         this.itemRepository = itemRepository;
+        this.shoppingCartItemRepository = shoppingCartItemRepository;
     }
 
     @GetMapping("/shoppingcart")
@@ -56,6 +57,19 @@ public class ShoppingCartController
         }
         shoppingCartService.addToShoppingCart(item.get());
         attributes.addAttribute("message", "Item added to shopping cart");
+
+        return new RedirectView("/shoppingcart");
+    }
+
+    @PostMapping("/shoppingcart/{shoppingCartItemId}")
+    public RedirectView removeFromCart(@PathVariable("shoppingCartItemId") Long shoppingCartItemId, RedirectAttributes attributes)
+    {
+        var shoppingCartItem = shoppingCartItemRepository.findById(shoppingCartItemId);
+        if (shoppingCartItem.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        shoppingCartService.removeFromCart(shoppingCartItem.get());
+        attributes.addAttribute("message", "Item removed from shopping Cart");
 
         return new RedirectView("/shoppingcart");
     }

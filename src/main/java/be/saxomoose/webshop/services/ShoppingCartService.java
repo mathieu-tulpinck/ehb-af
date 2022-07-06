@@ -13,7 +13,6 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,6 +55,21 @@ public class ShoppingCartService
             item.setQuantityInStock(item.getQuantityInStock() - 1);
             itemRepository.save(item);
         }
+    }
+
+    public void removeFromCart(ShoppingCartItem shoppingCartItem)
+    {
+        var quantity = shoppingCartItem.getQuantity();
+        if (quantity == 1) {
+            shoppingCartItemRepository.delete(shoppingCartItem);
+        } else if (quantity > 1) {
+            shoppingCartItem.setQuantity(quantity - 1);
+            shoppingCartItemRepository.save(shoppingCartItem);
+        }
+
+        var item = shoppingCartItem.getItem();
+        item.setQuantityInStock(item.getQuantityInStock() + 1);
+        itemRepository.save(item);
     }
 
     public BigDecimal getTotal()

@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Item</title>
+  <div th:replace="fragments/head" />
+</head>
+<body>
+  <div class="container">
+    <div th:replace="fragments/navbar" />
+    <div class="row position-absolute top-50 start-50 translate-middle">
+<!--      <div class="col img-fluid img-thumbnail">-->
+<!--        <span>Image placeholder</span>-->
+<!--      </div>-->
+      <div class="col ms-4">
+        <div class="row">
+          <table class="table">
+            <caption>Details</caption>
+            <thead>
+            <tr>
+              <th scope="col">Item name</th>
+              <th scope="col">Quantity in stock</th>
+              <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td th:text="${item.name}">Name placeholder</td>
+              <td th:text="${item.quantityInStock}">Quantity in stock placeholder</td>
+              <td th:text="${item.price}">Price placeholder</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <a th:if="${item.quantityInStock > 0}" th:href="@{/shoppingcart/{itemId}(itemId = ${item.id})}" class="btn btn-primary">Add to cart</a>
+          <span th:unless="${item.quantityInStock > 0}" class="btn btn-info text-white" style="pointer-events: none;">Item out of stock</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

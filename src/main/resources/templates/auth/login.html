@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <div th:replace="fragments/head" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/navbar" />
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">
+            Invalid username or password.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <form th:action="@{/perform_login}" method="post" >
+                <div class="mb-3">
+                    <label for="username" class="form-label">Email address</label>
+                    <input type="email" name="username" id="username" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+<!--                <div class="mb-3 form-check">-->
+<!--                    <input type="checkbox" name="remember-me" id="remember-me" class="form-check-input">-->
+<!--                    <label class="form-check-label" for="remember-me">Remember me</label>-->
+<!--                </div>-->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -6,29 +6,46 @@ services:
     ports:
       - "3306:3306"
     environment:
-        MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
         MYSQL_ROOT_HOST: "%"
+        MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
         MYSQL_DATABASE: "${DB_DATABASE}"
         MYSQL_USER: "${DB_USERNAME}"
         MYSQL_PASSWORD: "${DB_PASSWORD}"
-        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    networks:
+      - "webshop"
     volumes:
       - "db_data:/var/lib/mysql"
   phpmyadmin:
     image: "phpmyadmin:latest"
     ports:
-      - "8080:80"
+      - "8090:80"
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_HOST: "${DB_PASSWORD}"
+      PMA_HOST: "db"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - "webshop"
     depends_on:
-      - db
+      - "db"
   mailhog:
     image: "mailhog/mailhog:latest"
     ports:
       - "1025:1025"
       - "8025:8025"
+    networks:
+      - "webshop"
+  webshop:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    image: "webshop:latest"
+    ports:
+      - "8080:8080"
+    networks:
+      - "webshop"
 
+networks:
+  webshop:
+    driver: bridge
 volumes:
   db_data:
     driver: local

@@ -1,0 +1,29 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <div th:replace="fragments/head" />
+</head>
+<body>
+<div class="container">
+  <div th:replace="fragments/navbar" />
+  <div class="row">
+    <div class="col-sm-4">
+      <form th:action="@{/register}" th:object="${user}" method="post" >
+        <div class="mb-3">
+          <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></label>
+          <label for="username" class="form-label">Email address</label>
+          <input th:field="*{username}" type="email" class="form-control" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></label>
+          <label for="password" class="form-label">Password</label>
+          <input th:field="*{password}" type="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

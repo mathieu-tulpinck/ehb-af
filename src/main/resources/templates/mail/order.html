@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<table class="table">
+  <caption>Order</caption>
+  <thead>
+  <tr>
+    <th scope="col">Order id</th>
+    <th scope="col">Timestamp</th>
+    <th scope="col">Delivery address</th>
+    <th scope="col">Postal code</th>
+    <th scope="col">City</th>
+    <th scope="col">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td th:text="${order.getId()}"></td>
+    <td th:text="${#dates.format(order.getCreatedDate(), 'dd-MM-yyyy HH:mm')}"></td>
+    <td th:text ="${order.getAddress()}"></td>
+    <td th:text ="${order.getPostalCode()}"></td>
+    <td th:text ="${order.getCity()}"></td>
+    <td th:text="${#numbers.formatDecimal(order.getTotal(), 1, 2, 'COMMA')} + ' €'"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

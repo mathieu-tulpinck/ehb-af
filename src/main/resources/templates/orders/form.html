@@ -1,0 +1,35 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <div th:replace="fragments/head" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/navbar" />
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+            <form th:action="@{/order}" th:object="${orderDto}" method="post" >
+                <div class="mb-3">
+                    <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="alert alert-danger"></label>
+                    <label for="address" class="form-label">Delivery address</label>
+                    <input th:field="*{address}" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="alert alert-danger"></label>
+                    <label for="postalCode" class="form-label">Postal code</label>
+                    <input th:field="*{postalCode}" type="number" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger"></label>
+                    <label for="city" class="form-label">City</label>
+                    <input th:field="*{city}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

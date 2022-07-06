@@ -1,0 +1,57 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item</title>
+    <div th:replace="fragments/head"></div>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/navbar" />
+    <span th:if="${message}" th:utext="${message}" class="alert alert-info mb-4" ></span>
+    <span th:if="${shoppingCartItems.isEmpty()}" class="alert alert-info">Your shopping cart is empty</span>
+    <span th:unless="${shoppingCartItems.isEmpty()}" class="alert alert-secondary">Beware that the shopping cart content will be discarded on logout</span>
+    <div th:unless="${shoppingCartItems.isEmpty()}" class="row mt-4 d-flex justify-content-center">
+        <table class="table">
+            <caption>Shopping cart</caption>
+            <thead>
+            <tr>
+                <th scope="col">Item name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal per item</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shoppingCartItem : ${shoppingCartItems}" >
+                <td th:text="${shoppingCartItem.item.name}"></td>
+                <td th:text="${#numbers.formatDecimal(shoppingCartItem.item.price, 1, 2, 'COMMA')} + ' €'"></td>
+                <td th:text="${shoppingCartItem.quantity}"></td>
+                <th:block th:with="subtotal=${shoppingCartItem.item.price * shoppingCartItem.quantity}">
+                    <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
+                </th:block>
+                <td>
+                    <form th:action="@{/shoppingcart/{shoppingCartItemId}(shoppingCartItemId = ${shoppingCartItem.id})}" th:method="delete">
+                        <input type="submit" value="Remove from cart" class="btn btn-danger"/>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td>Subtotal</td>
+                <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td>Total with VAT</td>
+                <td th:text="${#numbers.formatDecimal(total, 1, 2, 'COMMA')} + ' €'"></td>
+                <td><a th:href="@{/order}" class="btn btn-primary">Check out</a></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+</body>
+</html>

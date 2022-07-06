@@ -33,6 +33,14 @@ public class Order {
     @DecimalMin(value = "0.00", message = "Subtotal must be positive")
     private BigDecimal total;
 
+    @CreatedDate
+    @Column(name = "created_at")
+    private Instant createdDate;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private Instant lastModifiedDate;
+
     public Long getId() {
         return id;
     }
@@ -49,5 +57,55 @@ public class Order {
     public void setApplicationUser(ApplicationUser user)
     {
         this.user = user;
+    }
+
+    public Collection<OrderDetails> getOrderDetails()
+    {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Collection<OrderDetails> orderDetails)
+    {
+        this.orderDetails = orderDetails;
+    }
+
+    public BigDecimal getSubtotal()
+    {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal)
+    {
+        this.subtotal = subtotal;
+    }
+
+    public BigDecimal getTotal()
+    {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total)
+    {
+        this.total = total;
+    }
+
+    public Instant getCreatedDate()
+    {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Instant createdDate)
+    {
+        this.createdDate = createdDate;
+    }
+
+    public Instant getLastModifiedDate()
+    {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate)
+    {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

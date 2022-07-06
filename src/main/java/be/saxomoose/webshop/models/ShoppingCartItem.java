@@ -1,5 +1,6 @@
 package be.saxomoose.webshop.models;
 
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -23,8 +24,9 @@ public class ShoppingCartItem {
 
     @NotNull
     // No unique constraint given transient nature. What matters is that there is no collision between current sessions.
-    @Column(name = "shopping_cart_id", columnDefinition = "varchar(36)")
-    @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
+    @Column(name = "shopping_cart_id"/*, columnDefinition = "varchar(36)"*/)
+    @Type(type="org.hibernate.type.UUIDCharType")
+//    @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
     private UUID shoppingCardId;
 
     @NotNull
@@ -38,12 +40,52 @@ public class ShoppingCartItem {
     @Column(name = "updated_at")
     private Instant lastModifiedDate;
 
+    public ShoppingCartItem() { }
+    public ShoppingCartItem(Item item, UUID shoppingCardId, int quantity, Instant createdDate, Instant lastModifiedDate)
+    {
+        this.item = item;
+        this.shoppingCardId = shoppingCardId;
+        this.quantity = quantity;
+        this.createdDate = createdDate;
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Item getItem()
+    {
+        return item;
+    }
+
+    public void setItem(Item item)
+    {
+        this.item = item;
+    }
+
+    public UUID getShoppingCardId()
+    {
+        return shoppingCardId;
+    }
+
+    public void setShoppingCardId(UUID shoppingCardId)
+    {
+        this.shoppingCardId = shoppingCardId;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
     }
 
     public Instant getCreatedDate() {
@@ -61,4 +103,6 @@ public class ShoppingCartItem {
     public void setLastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+
+
 }

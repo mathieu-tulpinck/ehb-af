@@ -16,6 +16,11 @@ INSERT INTO `items` (`id`, `category_id`, `name`, `price`, `quantity_in_stock`) 
 (8, 2, 'provident', 100.00, 10),
 (9, 2, 'tenetur', 5.99, 10),
 (10, 2, 'quis', 6.99, 10);
+
+INSERT INTO `shopping_cart_items` (`id`, `item_id`, `shopping_cart_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, '8b7ce7bb-071f-402d-b3ea-ebe8b6b88885', 1, '2022-06-08 19:27:08', '2022-06-08 19:27:08'),
+(2, 2, '8b7ce7bb-071f-402d-b3ea-ebe8b6b88885', 1, '2022-06-08 19:27:08', '2022-06-08 19:27:08');
+
 #
 # INSERT INTO `shopping_cart_items` (`id`, `shopping_cart_id`, `quantity`, `created_at`, `updated_at`) VALUES
 # (1, '8b7ce7bb-071f-402d-b3ea-ebe8b6b88885', 5, '2022-06-08 19:27:08', '2022-06-08 19:27:08');

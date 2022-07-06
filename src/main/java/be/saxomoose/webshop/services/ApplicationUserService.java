@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApplicationUserService implements UserDetailsService
 {
-    private ApplicationUserRepository applicationUserRepository;
-    private PasswordEncoder passwordEncoder;
+    private final ApplicationUserRepository applicationUserRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public ApplicationUserService(ApplicationUserRepository accountRepository, PasswordEncoder passwordEncoder)
@@ -42,6 +42,7 @@ public class ApplicationUserService implements UserDetailsService
     public ApplicationUser createNew(ApplicationUser user) {
         encodePassword(passwordEncoder, user);
         var createdUser = this.applicationUserRepository.save(user);
+
         return createdUser;
     }
 

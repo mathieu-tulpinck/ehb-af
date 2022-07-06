@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item</title>
+    <div th:replace="fragments/head"></div>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/navbar" />
+    <div class="alert alert-info " th:if="${message}" th:utext="${message}"></div>
+    <span class="alert alert-secondary">Beware that the shopping cart content will be discarded on logout</span>
+    <div class="row d-flex justify-content-center">
+        <table class="table">
+            <caption>Shopping cart</caption>
+            <thead>
+            <tr>
+                <th scope="col">Item name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal per item</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shoppingCartItem : ${shoppingCartItems}" >
+                <td th:text="${shoppingCartItem.item.name}"></td>
+                <td th:text="${#numbers.formatDecimal(shoppingCartItem.item.price, 1, 2, 'COMMA')} + ' €'"></td>
+                <td th:text="${shoppingCartItem.quantity}"></td>
+                <th:block th:with="subtotal=${shoppingCartItem.item.price * shoppingCartItem.quantity}">
+                    <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
+                </th:block>
+            </tr>
+            </tbody>
+            <tfoot th:if="${!shoppingCartItems.isEmpty()}">
+            <tr>
+                <td colspan="3" class="text-end">Subtotal</td>
+                <td th:text="${#numbers.formatDecimal(subtotal, 1, 2, 'COMMA')} + ' €'"></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-end">Total with VAT</td>
+                <td th:text="${#numbers.formatDecimal(total, 1, 2, 'COMMA')} + ' €'"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -43,13 +43,7 @@ public class ApplicationUser implements UserDetails
     @Column(columnDefinition = "VARCHAR(20) default 'ROLE_USER'")
     private String role = "ROLE_USER";
 
-//    @CreatedDate
-//    @Column(name = "created_at")
-//    private Instant createdDate;
-//
-//    @LastModifiedDate
-//    @Column(name = "updated_at")
-//    private Instant lastModifiedDate;
+
 
     public Long getId() {
         return id;

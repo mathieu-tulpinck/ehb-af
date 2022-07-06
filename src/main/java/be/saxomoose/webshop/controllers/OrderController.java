@@ -31,17 +31,16 @@ public class OrderController
     public ModelAndView order()
     {
         var modelAndView = new ModelAndView();
-        var order = new Order();
-        modelAndView.addObject("order", order);
+        var orderDto = new OrderDto();
+        modelAndView.addObject("orderDto", orderDto);
         modelAndView.setViewName("orders/form");
 
         return modelAndView;
     }
 
     @PostMapping("/order")
-    public ModelAndView order(@Valid @ModelAttribute("order") OrderDto orderDto, BindingResult bindingResult)
+    public ModelAndView order(@Valid @ModelAttribute("orderDto") OrderDto orderDto, BindingResult bindingResult)
     {
-        // place content of shopping cart in orderDto details
         var modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("BindingResult", bindingResult);
@@ -55,7 +54,7 @@ public class OrderController
             modelAndView.setViewName("redirect:/");
         }
 
-        // send email with orderDto confirmation
+        // send email with order confirmation
         // redirect to homepage with message
 
         return modelAndView;

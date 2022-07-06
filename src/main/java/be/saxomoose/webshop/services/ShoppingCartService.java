@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCartService
 {
     private static UUID shoppingCartId;
@@ -82,6 +83,7 @@ public class ShoppingCartService
         return shoppingCartItemRepository.getSubtotal(shoppingCartId.toString());
     }
 
+    @Transactional
     public void clearShoppingCart()
     {
         shoppingCartItemRepository.deleteAllByShoppingCartId(shoppingCartId);

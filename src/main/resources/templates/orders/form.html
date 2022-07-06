@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
-            <form th:action="@{/order}" th:object="${order}" method="post" >
+            <form th:action="@{/order}" th:object="${orderDto}" method="post" >
                 <div class="mb-3">
                     <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="alert alert-danger"></label>
                     <label for="address" class="form-label">Delivery address</label>

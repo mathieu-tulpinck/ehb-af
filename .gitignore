@@ -37,9 +37,9 @@ out/
 .vscode/
 
 ###
-/docker/.env
 /gradle/wrapper/gradle-wrapper.jar
 /gradle/wrapper/gradle-wrapper.properties
 /gradlew
 /gradlew.bat
 /src/main/resources/application.properties
+/.env

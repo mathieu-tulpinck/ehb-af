@@ -9,10 +9,12 @@ import be.saxomoose.webshop.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -30,14 +32,16 @@ public class OrderService
     private final OrderDetailsRepository orderDetailsRepository;
     private final ShoppingCartService shoppingCartService;
     private final ApplicationUserService applicationUserService;
+    private final HtmlEmailService emailService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository, ShoppingCartService shoppingCartService, ApplicationUserService applicationUserService)
+    public OrderService(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository, ShoppingCartService shoppingCartService, ApplicationUserService applicationUserService, HtmlEmailService emailService)
     {
         this.orderRepository = orderRepository;
         this.orderDetailsRepository = orderDetailsRepository;
         this.shoppingCartService = shoppingCartService;
         this.applicationUserService = applicationUserService;
+        this.emailService = emailService;
     }
 
     public void complete(Order order)
@@ -58,7 +62,9 @@ public class OrderService
 
     }
 
-    public void send(Order order)
+    public void send(Order order) throws MessagingException
     {
+        var user = SecurityContextHolder.getContext().getAuthentication().getName();
+        emailService.sendHtmlEmail(user, "info@webshop.test", "Order confirmation", LocaleContextHolder.getLocale(), order);
     }
 }

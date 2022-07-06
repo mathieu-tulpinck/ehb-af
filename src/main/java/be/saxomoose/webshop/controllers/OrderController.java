@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @Controller
@@ -49,7 +50,11 @@ public class OrderController
             var order = new Order(orderDto.getAddress(), orderDto.getPostalCode(), orderDto.getCity());
             orderService.complete(order);
             shoppingCartService.clearShoppingCart();
-            orderService.send(order);
+            try {
+                orderService.send(order);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
             modelAndView.addObject("message", "Order confirmation sent to your mailbox");
             modelAndView.setViewName("redirect:/");
         }

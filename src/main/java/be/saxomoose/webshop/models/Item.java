@@ -1,16 +1,9 @@
 package be.saxomoose.webshop.models;
 
-import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Entity
 @Table(name = "items")
@@ -88,6 +81,4 @@ public class Item {
     public void setQuantityInStock(Integer quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
-
-
 }

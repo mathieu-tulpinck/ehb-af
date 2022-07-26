@@ -1,26 +1,17 @@
 package be.saxomoose.webshop.services;
 
-import be.saxomoose.webshop.dtos.OrderDto;
 import be.saxomoose.webshop.models.ApplicationUser;
 import be.saxomoose.webshop.models.Order;
 import be.saxomoose.webshop.models.OrderDetails;
 import be.saxomoose.webshop.repositories.OrderDetailsRepository;
 import be.saxomoose.webshop.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.WebApplicationContext;
 
 import javax.mail.MessagingException;
-import javax.transaction.Transactional;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 

@@ -59,9 +59,6 @@ public class OrderController
             modelAndView.setViewName("redirect:/");
         }
 
-        // send email with order confirmation
-        // redirect to homepage with message
-
         return modelAndView;
     }
 }

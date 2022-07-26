@@ -1,18 +1,11 @@
 package be.saxomoose.webshop.models;
 
-import be.saxomoose.webshop.enums.Role;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -114,6 +107,4 @@ public class ApplicationUser implements UserDetails
     {
         return true;
     }
-
-
 }

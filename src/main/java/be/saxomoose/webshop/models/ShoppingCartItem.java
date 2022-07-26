@@ -101,6 +101,4 @@ public class ShoppingCartItem {
     public void setLastModifiedDate(Instant lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
-
-
 }

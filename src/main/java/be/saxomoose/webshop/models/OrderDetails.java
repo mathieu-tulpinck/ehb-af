@@ -1,13 +1,8 @@
 package be.saxomoose.webshop.models;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.ArrayDeque;
 
 @Entity
 @Table(name = "order_details")

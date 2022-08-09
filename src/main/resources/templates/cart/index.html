@@ -8,7 +8,7 @@
     <div th:replace="fragments/navbar" />
     <span th:if="${message}" th:utext="${message}" class="alert alert-info mb-4" ></span>
     <span th:if="${shoppingCartItems.isEmpty()}" class="alert alert-info">Your shopping cart is empty</span>
-    <span th:unless="${shoppingCartItems.isEmpty()}" class="alert alert-secondary">Beware that the shopping cart content will be discarded on logout</span>
+    <span th:unless="${shoppingCartItems.isEmpty()}" class="alert alert-secondary">Beware that the shopping cart content will com discarded on logout</span>
     <div th:unless="${shoppingCartItems.isEmpty()}" class="row mt-4 d-flex justify-content-center">
         <table class="table">
             <caption>Shopping cart</caption>

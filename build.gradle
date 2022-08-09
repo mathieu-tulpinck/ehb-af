@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'be.saxomoose'
+group = 'com.saxomoose'
 version = '0.0.1'
 sourceCompatibility = '11'
 

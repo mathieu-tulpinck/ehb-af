@@ -1,6 +1,12 @@
 # Installation
 
-From project folder, run `docker compose up [-d]`.
+Clone git repo: `git clone <url> webshop`
+
+Add .env file to root folder.
+
+Add application.properties file to `src/main/resources`.
+
+From root folder, run `docker compose up [-d]`.
 
 # Services
 

@@ -42,6 +42,8 @@ services:
       - "8080:8080"
     networks:
       - "webshop"
+    depends_on:
+      - "db"
 
 networks:
   webshop:

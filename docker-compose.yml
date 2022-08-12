@@ -33,15 +33,30 @@ services:
       - "8025:8025"
     networks:
       - "webshop"
-  webshop:
-    build:
-      context: "."
-      dockerfile: "Dockerfile"
-    image: "webshop:latest"
-    ports:
-      - "8080:8080"
-    networks:
-      - "webshop"
+#  webshop:
+#    build:
+#      context: "."
+#      dockerfile: "Dockerfile"
+#    image: "webshop:latest"
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/webshop"
+#      SPRING_DATASOURCE_USERNAME: "${DB_USERNAME}"
+#      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+#      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.MySQL8Dialect"
+#      SPRING_JPA_GENERATE-DDL: "true"
+#      SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
+#      SPRING_JPA_DEFER-DATASOURCE_INITIALIZATION: "true"
+#      SPRING_SQL_INIT_MODE: "always"
+#      SPRING_SQL_INIT_DATA-LOCATIONS: "classpath:database/data.sql"
+#      SPRING_MAIL_HOST: "mailhog"
+#      SPRING_MAIL_PORT: "1025"
+#
+#    networks:
+#      - "webshop"
+#    depends_on:
+#      - "db"
 
 networks:
   webshop:

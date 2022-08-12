@@ -1,6 +1,14 @@
 # Installation
 
-From project folder, run `docker compose up [-d]`.
+Clone git repo: `git clone <url> webshop`
+
+Add `.env` file to root folder.
+
+Add `application.properties` file to `src/main/resources`.
+
+The app runs locally against a containerized db service.
+
+After the first boot, open `src/main/resources/application.properties` and comment out `spring.sql.init.data-locations=classpath:database/data.sql` to deactivate seeding.
 
 # Services
 
@@ -8,14 +16,11 @@ From project folder, run `docker compose up [-d]`.
 |---|---|
 | phpmyadmin | http://[docker host ip]:8090 |
 | mailhog | http://[docker host ip]:8025 |
-| webshop | http://[docker host ip]:8080 |
- 
+
 # Use
 
 A default user is seeded on db creation, the credentials are: `mathieu@webshop.test/password`
 
-Default db credentials are: `dba/n7+Cgm9K`
+Default db credentials are: `dba/n7+Cgm9K`.
 
-Following ports are published on the docker host:
-
-After the first boot, open `src/main/resources/application.properties` and comment out `spring.sql.init.data-locations=classpath:database/data.sql` to deactivate seeding. Rebuild the image by running `docker compose build [--no-cache]`.
+A user must be authenticated before adding items to his cart.

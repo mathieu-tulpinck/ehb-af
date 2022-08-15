@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class OrderController
 {
     private final OrderService orderService;
-    private ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
 
     @Autowired
     public OrderController(OrderService orderService, ShoppingCartService shoppingCartService)

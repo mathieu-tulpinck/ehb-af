@@ -1,6 +1,6 @@
 # Installation
 
-Clone git repo: `git clone <url> webshop`
+Clone git repo: `git clone <url> webshop`.
 
 Add `.env` file to root folder.
 
@@ -19,8 +19,6 @@ After the first boot, open `src/main/resources/application.properties` and comme
 
 # Use
 
-A default user is seeded on db creation, the credentials are: `mathieu@webshop.test/password`
-
-Default db credentials are: `dba/n7+Cgm9K`.
+A default user is seeded on db creation, the credentials are: `mathieu@webshop.test/password`.
 
 A user must be authenticated before adding items to his cart.

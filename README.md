@@ -22,3 +22,5 @@ After the first boot, open `src/main/resources/application.properties` and comme
 A default user is seeded on db creation, the credentials are: `mathieu@webshop.test/password`.
 
 A user must be authenticated before adding items to his cart.
+
+The checkout process takes the form of an order confirmation sent by email.

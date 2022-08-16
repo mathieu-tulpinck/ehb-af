@@ -19,8 +19,6 @@ public class ItemController
 {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
-    private Long currentCategoryId;
-    private Collection<Item> items;
 
     @Autowired
     public ItemController(CategoryRepository categoryRepository, ItemRepository itemRepository)
@@ -36,12 +34,12 @@ public class ItemController
         var modelAndView = new ModelAndView("items/index");
         modelAndView.addObject("categories", categories);
 
+        Collection<Item> items;
         if (categoryId == null) {
             items = itemRepository.findAll();
             modelAndView.addObject("items", items);
         } else {
-            currentCategoryId = categoryId;
-            items = itemRepository.findItemsByCategoryId(currentCategoryId);
+            items = itemRepository.findItemsByCategoryId(categoryId);
             modelAndView.addObject("items", items);
         }
 

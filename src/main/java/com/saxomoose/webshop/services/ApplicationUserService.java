@@ -41,9 +41,8 @@ public class ApplicationUserService implements UserDetailsService
 
     public ApplicationUser createNew(ApplicationUser user) {
         encodePassword(passwordEncoder, user);
-        var createdUser = this.applicationUserRepository.save(user);
 
-        return createdUser;
+        return this.applicationUserRepository.save(user);
     }
 
     public void activate(ApplicationUser user) {

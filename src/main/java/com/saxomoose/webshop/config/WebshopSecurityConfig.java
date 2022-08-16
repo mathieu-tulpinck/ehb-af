@@ -1,6 +1,5 @@
 package com.saxomoose.webshop.config;
 
-import com.saxomoose.webshop.services.ApplicationUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.SecurityExpressionHandler;
@@ -20,14 +19,12 @@ import javax.sql.DataSource;
 public class WebshopSecurityConfig extends WebSecurityConfigurerAdapter
 {
     private final DataSource dataSource;
-    private final ApplicationUserService applicationUserService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public WebshopSecurityConfig(DataSource dataSource, ApplicationUserService accountService, PasswordEncoder passwordEncoder)
+    public WebshopSecurityConfig(DataSource dataSource, PasswordEncoder passwordEncoder)
     {
         this.dataSource = dataSource;
-        this.applicationUserService = accountService;
         this.passwordEncoder = passwordEncoder;
     }
 

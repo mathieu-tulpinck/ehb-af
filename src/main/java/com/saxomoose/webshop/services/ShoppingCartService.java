@@ -33,9 +33,8 @@ public class ShoppingCartService
     public List<ShoppingCartItem> getShoppingCartItems()
     {
         initializeCart();
-        var items = shoppingCartItemRepository.findItemsByShoppingCartId(shoppingCartId);
 
-        return items;
+        return shoppingCartItemRepository.findItemsByShoppingCartId(shoppingCartId);
     }
 
     public void addToShoppingCart(Item item)

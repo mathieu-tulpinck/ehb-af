@@ -2,20 +2,27 @@
 
 Clone git repo: `git clone <url> webshop`.
 
-Add `.env` file to root folder.
+Add `.env` file to top folder.
 
 Add `application.properties` file to `src/main/resources`.
 
-The app runs locally against a containerized db service.
+From the top folder, run `docker compose up -d`.
 
-After the first boot, open `src/main/resources/application.properties` and comment out `spring.sql.init.data-locations=classpath:database/data.sql` to deactivate seeding.
+After the first boot, open `src/main/resources/application.properties` and comment the following lines out to deactivate seeding:
+
+- `spring.jpa.defer-datasource-initialization=true`
+- `spring.sql.init.mode=always`
+- `spring.sql.init.data-locations=classpath:database/data.sql`
+
+Rebuild the image by running `docker compose build [--no-cache]`.
 
 # Services
 
-| service | external url |
-|---|---|
+| service    | external url                 |
+|------------|------------------------------|
 | phpmyadmin | http://[docker host ip]:8090 |
-| mailhog | http://[docker host ip]:8025 |
+| mailhog    | http://[docker host ip]:8025 |
+| webshop    | http://[docker host ip]:8080 | 
 
 # Use
 

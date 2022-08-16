@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCartService
 {
     private static UUID shoppingCartId;
@@ -34,9 +33,8 @@ public class ShoppingCartService
     public List<ShoppingCartItem> getShoppingCartItems()
     {
         initializeCart();
-        var items = shoppingCartItemRepository.findItemsByShoppingCartId(shoppingCartId);
 
-        return items;
+        return shoppingCartItemRepository.findItemsByShoppingCartId(shoppingCartId);
     }
 
     public void addToShoppingCart(Item item)

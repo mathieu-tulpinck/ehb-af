@@ -6,9 +6,12 @@
 <body>
 <div class="container">
     <div th:replace="fragments/navbar" />
-    <span th:if="${message}" th:utext="${message}" class="alert alert-info mb-4" ></span>
+    <div class="alert alert-success alert-dismissible fade show d-inline mb-4 me-4" role="alert" th:if="${message}">
+        <span th:utext="${message}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <span th:if="${shoppingCartItems.isEmpty()}" class="alert alert-info">Your shopping cart is empty</span>
-    <span th:unless="${shoppingCartItems.isEmpty()}" class="alert alert-secondary">Please do note that the shopping cart content will be discarded on logout</span>
+    <span th:unless="${shoppingCartItems.isEmpty()}" class="alert alert-secondary">Please note that the shopping cart content will be discarded on logout</span>
     <div th:unless="${shoppingCartItems.isEmpty()}" class="row mt-4 d-flex justify-content-center">
         <table class="table">
             <caption>Shopping cart</caption>

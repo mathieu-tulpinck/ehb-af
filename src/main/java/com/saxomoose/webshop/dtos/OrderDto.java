@@ -2,6 +2,7 @@ package com.saxomoose.webshop.dtos;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class OrderDto
@@ -11,7 +12,8 @@ public class OrderDto
 
     @NotNull
     @Column(name = "post_code")
-    @Max(9999)
+    @Min(value = 1000)
+    @Max(value = 9999)
     private Integer postalCode;
 
     @NotNull

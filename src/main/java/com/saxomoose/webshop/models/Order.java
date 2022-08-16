@@ -40,8 +40,8 @@ public class Order {
 
     @NotNull
     @Column(name = "post_code")
-    @Min(1000)
-    @Max(9999)
+    @Min(value = 1000)
+    @Max(value = 9999)
     private Integer postalCode;
 
     @NotNull

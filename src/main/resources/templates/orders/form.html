@@ -15,19 +15,19 @@
             </div>
             <form th:action="@{/order}" th:object="${orderDto}" method="post" >
                 <div class="mb-3">
-                    <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="alert alert-danger"></label>
                     <label for="address" class="form-label">Delivery address</label>
                     <input th:field="*{address}" class="form-control" aria-describedby="emailHelp">
+                    <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="alert alert-danger mt-2"></div>
                 </div>
                 <div class="mb-3">
-                    <label th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="alert alert-danger"></label>
                     <label for="postalCode" class="form-label">Postal code</label>
                     <input th:field="*{postalCode}" type="number" class="form-control">
+                    <div th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="alert alert-danger mt-2"></div>
                 </div>
                 <div class="mb-3">
-                    <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger"></label>
                     <label for="city" class="form-label">City</label>
                     <input th:field="*{city}" class="form-control">
+                    <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger mt-2"></div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

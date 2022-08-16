@@ -16,7 +16,6 @@ import java.time.Instant;
 import static java.util.stream.Collectors.toList;
 
 @Service
-//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class OrderService
 {
     private final OrderRepository orderRepository;

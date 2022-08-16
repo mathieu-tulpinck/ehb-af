@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCartService
 {
     private static UUID shoppingCartId;

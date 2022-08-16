@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -39,6 +40,7 @@ public class Order {
 
     @NotNull
     @Column(name = "post_code")
+    @Min(1000)
     @Max(9999)
     private Integer postalCode;
 

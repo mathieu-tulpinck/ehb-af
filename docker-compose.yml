@@ -38,8 +38,6 @@ services:
     image: "webshop:latest"
     ports:
       - "8080:8080"
-    environment:
-      SPRING_CONFIG_LOCATION: "file:/app/config/application.properties"
     networks:
       - "webshop"
     depends_on:

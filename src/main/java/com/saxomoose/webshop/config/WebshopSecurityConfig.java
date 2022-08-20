@@ -21,6 +21,7 @@ public class WebshopSecurityConfig extends WebSecurityConfigurerAdapter
     private final DataSource dataSource;
     private final PasswordEncoder passwordEncoder;
 
+    // This annotation is needed to use dependency injection.
     @Autowired
     public WebshopSecurityConfig(DataSource dataSource, PasswordEncoder passwordEncoder)
     {
@@ -31,20 +32,22 @@ public class WebshopSecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder)
-                .authoritiesByUsernameQuery("select username,role from users where username = ?");
+            .dataSource(dataSource)
+            .passwordEncoder(passwordEncoder)
+            // Sets the query to be used for finding a user's authorities by their username.
+            .authoritiesByUsernameQuery("select username,role from users where username = ?");
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                // Whitelist of public urls.
                 .mvcMatchers("/", "/items*", "/items/**", "/register", "/logout").permitAll()
                 .mvcMatchers("/css/**", "/img/**", "/js/**", "/svg/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated().expressionHandler(expressionHandler()).and()
                 .formLogin().loginPage("/login").loginProcessingUrl("/perform_login").permitAll().defaultSuccessUrl("/", true).and()
-//                .rememberMe().userDetailsService(accountService).key("remember-me").and()
-                .logout().logoutUrl("/perform_logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/").permitAll().and()
+                .logout().logoutUrl("/perform_logout")
+                .logoutSuccessUrl("/").permitAll().and()
                 .httpBasic();
     }
 

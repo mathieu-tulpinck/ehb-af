@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
+// Annotation makes class singleton by default.
 @Service
 public class ShoppingCartService
 {
@@ -78,12 +79,13 @@ public class ShoppingCartService
         return shoppingCartItemRepository.getSubtotal(shoppingCartId.toString());
     }
 
-    @Transactional
+    // Performs a batch delete of all shopping cart items.
     public void clearShoppingCart()
     {
         shoppingCartItemRepository.deleteAllByShoppingCartId(shoppingCartId);
     }
 
+    // Does not persist shopping cart across sessions.
     private void initializeCart()
     {
         UUID cartId;

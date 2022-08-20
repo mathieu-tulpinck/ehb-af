@@ -22,8 +22,6 @@ public class ApplicationUserService implements UserDetailsService
         this.passwordEncoder = passwordEncoder;
     }
 
-    // 1. Load the user from the users table by username. If not found, throw UsernameNotFoundException.
-    // 2. Convert/wrap the user to a UserDetails object and return it.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {

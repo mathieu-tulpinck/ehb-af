@@ -33,7 +33,7 @@ public class HtmlEmailService
         helper.setFrom(from);
         helper.setSubject(subject);
 
-        // Create the HTML body using Thymeleaf
+        // Creates the HTML body using Thymeleaf.
         var ctx = new Context(locale);
         ctx.setVariable("order", order);
         String htmlContent = templateEngine.process("mail/order", ctx);

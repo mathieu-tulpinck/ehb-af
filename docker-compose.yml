@@ -27,11 +27,10 @@ services:
   mailhog:
     image: "mailhog/mailhog:latest"
     ports:
-      - "1025:1025"
       - "8025:8025"
     networks:
       - "webshop"
-  webshop:
+  app:
     build:
       context: "."
       dockerfile: "Dockerfile"
@@ -39,7 +38,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_CONFIG_LOCATION: "file:/app/config/application.properties"
+        SPRING_CONFIG_LOCATION: "file:/app/config/application.properties"
     networks:
       - "webshop"
     depends_on:

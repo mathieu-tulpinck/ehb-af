@@ -43,6 +43,7 @@ public class AuthController
         return modelAndView;
     }
 
+    // Custom registration logic.
     @PostMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute("user") ApplicationUser user, BindingResult bindingResult)
     {

@@ -36,6 +36,7 @@ public class OrderService
 
     public void complete(Order order)
     {
+        // Loads authenticated user.
         var user = (ApplicationUser)applicationUserService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         order.setUser(user);
         order.setSubtotal(shoppingCartService.getSubtotal());

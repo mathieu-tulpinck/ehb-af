@@ -29,6 +29,7 @@ public class ApplicationUser implements UserDetails
     @NotNull
     private String password;
 
+    // Required by UserDetails interface.
     @NotNull
     private boolean enabled;
 
